@@ -480,7 +480,7 @@
 
         .screenshots-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 24px;
             margin-top: 60px;
         }
@@ -569,6 +569,16 @@
             font-weight: 700;
             border: 4px solid white;
             box-shadow: var(--shadow-lg);
+            overflow: hidden;
+        }
+
+        .founder-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            border-radius: 50%;
+            display: block;
         }
 
         .founder-card blockquote {
@@ -731,6 +741,147 @@
             font-size: 22px;
         }
 
+        /* Support & Contact Sections */
+        .support-contact-wrapper {
+            padding: 80px 24px;
+            background: var(--bg-alt);
+        }
+
+        .support-contact-inner {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .support-contact-wrapper .section-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .support-contact-wrapper .section-header h2 {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--text);
+            letter-spacing: -0.5px;
+            margin-bottom: 12px;
+        }
+
+        .support-contact-wrapper .section-header p {
+            font-size: 17px;
+            color: var(--text-muted);
+        }
+
+        .contact-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+        }
+
+        .contact-card {
+            background: rgba(255,255,255,0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(0,122,255,0.12);
+            border-radius: var(--radius-lg);
+            padding: 40px 36px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0,122,255,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 48px rgba(0,122,255,0.15);
+        }
+
+        .contact-card-icon {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 28px;
+        }
+
+        .contact-card-icon.email-icon {
+            background: linear-gradient(135deg, #E6F2FF 0%, #CCE4FF 100%);
+            color: var(--primary);
+            box-shadow: 0 0 0 8px rgba(0,122,255,0.08);
+        }
+
+        .contact-card-icon.whatsapp-icon {
+            background: linear-gradient(135deg, #E6FFF0 0%, #CCFFE0 100%);
+            color: #25D366;
+            box-shadow: 0 0 0 8px rgba(37,211,102,0.08);
+        }
+
+        .contact-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+
+        .contact-card p {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+            line-height: 1.5;
+        }
+
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link.email-link {
+            background: linear-gradient(135deg, var(--primary) 0%, #0056CC 100%);
+            color: white;
+            box-shadow: 0 6px 20px rgba(0,122,255,0.35);
+        }
+
+        .contact-link.email-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0,122,255,0.45);
+        }
+
+        .contact-link.whatsapp-link {
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: white;
+            box-shadow: 0 6px 20px rgba(37,211,102,0.35);
+        }
+
+        .contact-link.whatsapp-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(37,211,102,0.45);
+        }
+
+        @media (max-width: 640px) {
+            .contact-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .support-contact-wrapper {
+                padding: 60px 20px;
+            }
+
+            .contact-card {
+                padding: 32px 24px;
+            }
+
+            .support-contact-wrapper .section-header h2 {
+                font-size: 28px;
+            }
+        }
+
         /* Footer */
         footer {
             background: #0F172A;
@@ -777,6 +928,7 @@
             text-decoration: none;
             font-size: 14px;
             transition: color 0.3s;
+            cursor: pointer;
         }
 
         .footer-links a:hover {
@@ -790,17 +942,145 @@
             padding-top: 24px;
         }
 
+        /* ── Modal Overlay ── */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.75);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            z-index: 9999;
+            overflow-y: auto;
+            padding: 40px 16px;
+        }
+        .modal-overlay.active { display: flex; align-items: flex-start; justify-content: center; }
+
+        .modal-box {
+            background: linear-gradient(135deg, rgba(15,23,42,0.97) 0%, rgba(30,41,59,0.97) 100%);
+            border: 1px solid rgba(99,102,241,0.35);
+            border-radius: 24px;
+            max-width: 780px;
+            width: 100%;
+            padding: 48px 40px;
+            position: relative;
+            box-shadow: 0 0 60px rgba(99,102,241,0.18), 0 24px 80px rgba(0,0,0,0.5);
+            color: #CBD5E1;
+            line-height: 1.8;
+        }
+        @media (max-width: 600px) { .modal-box { padding: 32px 20px; } }
+
+        .modal-close {
+            position: absolute;
+            top: 20px; right: 24px;
+            background: rgba(99,102,241,0.15);
+            border: 1px solid rgba(99,102,241,0.3);
+            color: #94A3B8;
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.2s;
+        }
+        .modal-close:hover { background: rgba(99,102,241,0.35); color: white; }
+
+        .modal-box h2 {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #6366F1, #8B5CF6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+        }
+        .modal-box .modal-date {
+            font-size: 13px; color: #64748B; margin-bottom: 32px;
+        }
+        .modal-box h3 {
+            font-size: 17px; font-weight: 700; color: #E2E8F0;
+            margin: 28px 0 10px;
+        }
+        .modal-box p { font-size: 14px; color: #94A3B8; margin-bottom: 12px; }
+        .modal-box ul { padding-left: 20px; margin-bottom: 12px; }
+        .modal-box ul li { font-size: 14px; color: #94A3B8; margin-bottom: 6px; }
+        .modal-box a.modal-link { color: #818CF8; text-decoration: underline; }
+        .modal-divider { border: none; border-top: 1px solid rgba(99,102,241,0.2); margin: 24px 0; }
+
         /* Responsive */
         @media (max-width: 768px) {
             .hero-container {
                 grid-template-columns: 1fr;
                 text-align: center;
             }
-            .hero h1 { font-size: 42px; }
-            .hero-image { display: none; }
+            .hero h1 { font-size: 36px; }
+
+            /* ✅ FIX: hero-image was display:none — now visible on mobile */
+            .hero-image {
+                display: flex;
+                justify-content: center;
+                margin-top: 40px;
+                width: 100%;
+            }
+
+            /* ✅ FIX: phone mockup responsive sizing for mobile */
+            .phone-mockup {
+                width: 220px;
+                height: 440px;
+                transform: none; /* remove 3D tilt on mobile */
+            }
+
+            /* ✅ FIX: phone screen image fills mockup properly */
+            .phone-screen {
+                overflow: hidden;
+            }
+            .phone-screen img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+                max-width: 100%;
+            }
+
+            /* ✅ FIX: floating cards repositioned for mobile */
+            .floating-card {
+                display: none;
+            }
+
             .features-grid { grid-template-columns: 1fr; }
-            .screenshots-grid { grid-template-columns: repeat(2, 1fr); }
+
+            /* ✅ FIX: screenshots grid — 1 column on very small, 2 on medium mobile */
+            .screenshots-grid {
+                grid-template-columns: repeat(1, 1fr);
+                gap: 16px;
+            }
+
+            /* ✅ FIX: screenshot images always visible */
+            .screenshot-item {
+                overflow: visible;
+            }
+            .screenshot-item img {
+                width: 100%;
+                height: auto;
+                display: block;
+                border-radius: 16px;
+                max-width: 100%;
+            }
+
             .nav-links { display: none; }
+        }
+
+        /* Extra small screens */
+        @media (max-width: 480px) {
+            .phone-mockup {
+                width: 180px;
+                height: 360px;
+            }
+            .screenshots-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            .hero h1 { font-size: 28px; }
         }
     </style>
 </head>
@@ -817,7 +1097,7 @@
                 <a href="#features">Features</a>
                 <a href="#screenshots">Screenshots</a>
                 <a href="#about">About</a>
-                <a href="#" class="btn">Get App</a>
+                <a href="https://www.dropbox.com/scl/fi/rdc9i6si9nc34j288aueg/eChat-1.0.apk?rlkey=xyn8o1jg3neko2z3tz4jlykaw&st=75srikmf&dl=1" download="eChat-1.0.apk" target="_blank" rel="noopener noreferrer" class="btn">Get App</a>
             </div>
         </div>
     </nav>
@@ -839,7 +1119,7 @@
                     <div class="hero-feature"><i class="fa-solid fa-users"></i> Group chats</div>
                 </div>
                 <div class="hero-cta">
-                    <a href="#" class="btn btn-large"><i class="fa-brands fa-apple"></i> Download Now</a>
+                    <a href="https://www.dropbox.com/scl/fi/rdc9i6si9nc34j288aueg/eChat-1.0.apk?rlkey=xyn8o1jg3neko2z3tz4jlykaw&st=75srikmf&dl=1" download="eChat-1.0.apk" target="_blank" rel="noopener noreferrer" class="btn btn-large"><i class="fa-brands fa-android"></i> Download APK</a>
                     <a href="#features" class="btn btn-outline btn-large"><i class="fa-solid fa-play"></i> How it works</a>
                 </div>
                 <div class="hero-cta-note">
@@ -922,24 +1202,19 @@
             </div>
             <div class="screenshots-grid">
                 <div class="screenshot-item">
-                    <!-- FIXED: was src="" — now uses downloaded chat UI image -->
-                    <img src="https://images.unsplash.com/photo-1611746872915-64382b5c76da?w=400&q=80" alt="Chat UI">
+                    <!-- User image 1 -->
+                    <img src="https://teamily-storage.becdn.net/im/images/3280686212547622/add008f0-a53d-4bcd-9294-82f6ac3d1c89.2.jpeg" alt="eChat Screenshot 1">
                     <div class="screenshot-label">Chat Interface</div>
                 </div>
                 <div class="screenshot-item">
-                    <!-- FIXED: was src="" — now uses downloaded dark mode image -->
-                    <img src="https://images.unsplash.com/photo-1614680376573-df3480f0c6ff?w=400&q=80" alt="Dark Mode">
+                    <!-- User image 2 -->
+                    <img src="https://teamily-storage.becdn.net/im/images/3280686212547622/dc4203a0-fc85-45c0-9333-d7cbfc630a40.3.jpeg" alt="eChat Screenshot 2">
                     <div class="screenshot-label">Dark Mode</div>
                 </div>
                 <div class="screenshot-item">
-                    <!-- FIXED: was src="" — now uses downloaded calls UI image -->
-                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&q=80" alt="Calls UI">
+                    <!-- User image 3 -->
+                    <img src="https://teamily-storage.becdn.net/im/images/3280686212547622/5a46aa2a-d8fb-4275-a681-18d412b3951e.4.jpeg" alt="eChat Screenshot 3">
                     <div class="screenshot-label">Secure Calls</div>
-                </div>
-                <div class="screenshot-item">
-                    <!-- FIXED: was src="" — now uses downloaded media UI image -->
-                    <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&q=80" alt="Media UI">
-                    <div class="screenshot-label">Media Sharing</div>
                 </div>
             </div>
         </div>
@@ -949,12 +1224,12 @@
     <section class="founder" id="about">
         <div class="founder-container">
             <div class="founder-card">
-                <div class="founder-avatar">E</div>
+                <div class="founder-avatar"><img src="https://teamily-storage.becdn.net/im/images/3280686212547622/04d78bf2-c34f-4a0c-9d20-06fc5860eee3.1000292735.png" alt="MAHTAB KHAN JAMALI — Founder &amp; CEO, eChat" loading="lazy"></div>
                 <blockquote>
                     "eChat was built on the belief that everyone has a right to privacy without sacrificing the user experience. We believe secure communication should be simple, fast, and accessible to all."
                 </blockquote>
                 <div class="name">
-                    Elias
+                    MAHTAB KHAN JAMALI
                     <span class="verified-badge"><i class="fa-solid fa-circle-check"></i></span>
                 </div>
                 <div class="title">Founder &amp; CEO, eChat</div>
@@ -990,9 +1265,162 @@
         <div class="cta-container">
             <h2>Join millions of users today.</h2>
             <p>Experience the most secure messaging app in the world.</p>
-            <a href="#" class="btn"><i class="fa-brands fa-apple"></i> Download eChat Free</a>
+            <a href="https://www.dropbox.com/scl/fi/rdc9i6si9nc34j288aueg/eChat-1.0.apk?rlkey=xyn8o1jg3neko2z3tz4jlykaw&st=75srikmf&dl=1" download="eChat-1.0.apk" target="_blank" rel="noopener noreferrer" class="btn"><i class="fa-brands fa-android"></i> Download eChat Free</a>
         </div>
     </section>
+
+    <!-- Support & Contact -->
+    <section class="support-contact-wrapper" id="support">
+        <div class="support-contact-inner">
+            <div class="section-header">
+                <h2>We're Here to Help</h2>
+                <p>Reach out to us anytime — we respond fast.</p>
+            </div>
+            <div class="contact-cards">
+                <!-- Support Card -->
+                <div class="contact-card">
+                    <div class="contact-card-icon email-icon">
+                        <i class="fa-solid fa-envelope"></i>
+                    </div>
+                    <h3>Support</h3>
+                    <p>Have a question or need help? Send us an email and we'll get back to you shortly.</p>
+                    <a href="mailto:mahtabjamali173@gmail.com" class="contact-link email-link">
+                        <i class="fa-solid fa-envelope"></i>
+                        📧 mahtabjamali173@gmail.com
+                    </a>
+                </div>
+                <!-- Contact Card -->
+                <div class="contact-card">
+                    <div class="contact-card-icon whatsapp-icon">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </div>
+                    <h3>Contact Us</h3>
+                    <p>Prefer to chat? Message us directly on WhatsApp for quick support.</p>
+                    <a href="https://wa.me/923473440239" target="_blank" rel="noopener noreferrer" class="contact-link whatsapp-link">
+                        <i class="fa-brands fa-whatsapp"></i>
+                        💬 WhatsApp: +92 347 3440239
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         TERMS OF SERVICE MODAL
+    ══════════════════════════════════════════ -->
+    <div class="modal-overlay" id="tosModal" role="dialog" aria-modal="true" aria-labelledby="tosTitle">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeModal('tosModal')" aria-label="Close">✕</button>
+            <h2 id="tosTitle">Terms of Service</h2>
+            <p class="modal-date">Effective Date: January 1, 2026 &nbsp;|&nbsp; Last Updated: July 28, 2026</p>
+            <p>Welcome to <strong style="color:#E2E8F0">eChat</strong>. By downloading, installing, or using the eChat application ("App"), you agree to be bound by these Terms of Service ("Terms"). Please read them carefully before using the App.</p>
+            <hr class="modal-divider">
+            <h3>1. Acceptance of Terms</h3>
+            <p>By accessing or using eChat, you confirm that you are at least 13 years of age, have read and understood these Terms, and agree to be legally bound by them. If you do not agree, please do not use the App.</p>
+            <h3>2. Description of Service</h3>
+            <p>eChat is a secure, end-to-end encrypted messaging application that allows users to send text messages, voice messages, images, videos, and make voice/video calls. The App is provided "as is" and may be updated or modified at any time.</p>
+            <h3>3. User Accounts</h3>
+            <ul>
+                <li>You are responsible for maintaining the confidentiality of your account credentials.</li>
+                <li>You must provide accurate and complete information when registering.</li>
+                <li>You are solely responsible for all activity that occurs under your account.</li>
+                <li>You must notify us immediately of any unauthorized use of your account.</li>
+            </ul>
+            <h3>4. Acceptable Use</h3>
+            <p>You agree NOT to use eChat to:</p>
+            <ul>
+                <li>Send spam, unsolicited messages, or bulk communications.</li>
+                <li>Harass, threaten, or harm other users.</li>
+                <li>Distribute illegal content, malware, or viruses.</li>
+                <li>Violate any applicable local, national, or international law or regulation.</li>
+                <li>Attempt to reverse-engineer, decompile, or tamper with the App.</li>
+                <li>Impersonate any person or entity.</li>
+            </ul>
+            <h3>5. Privacy</h3>
+            <p>Your use of eChat is also governed by our <a class="modal-link" href="#" onclick="switchModal('tosModal','privacyModal'); return false;">Privacy Policy</a>, which is incorporated into these Terms by reference.</p>
+            <h3>6. Intellectual Property</h3>
+            <p>All content, trademarks, logos, and software associated with eChat are the exclusive property of eChat Inc. You may not copy, modify, distribute, or create derivative works without our prior written consent.</p>
+            <h3>7. Disclaimers</h3>
+            <p>eChat is provided on an "as is" and "as available" basis without warranties of any kind, either express or implied. We do not guarantee uninterrupted, error-free, or completely secure service.</p>
+            <h3>8. Limitation of Liability</h3>
+            <p>To the maximum extent permitted by law, eChat Inc. shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of or inability to use the App.</p>
+            <h3>9. Termination</h3>
+            <p>We reserve the right to suspend or terminate your access to eChat at any time, with or without notice, for conduct that we believe violates these Terms or is harmful to other users, us, or third parties.</p>
+            <h3>10. Changes to Terms</h3>
+            <p>We may update these Terms from time to time. Continued use of the App after changes constitutes your acceptance of the new Terms. We will notify users of significant changes via in-app notification or email.</p>
+            <h3>11. Governing Law</h3>
+            <p>These Terms shall be governed by and construed in accordance with the laws of Pakistan. Any disputes shall be subject to the exclusive jurisdiction of the courts of Pakistan.</p>
+            <h3>12. Contact</h3>
+            <p>For questions about these Terms, please contact us at <a class="modal-link" href="mailto:mahtabjamali173@gmail.com">mahtabjamali173@gmail.com</a> or via <a class="modal-link" href="https://wa.me/923473440239" target="_blank" rel="noopener noreferrer">WhatsApp</a>.</p>
+        </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════
+         PRIVACY POLICY MODAL
+    ══════════════════════════════════════════ -->
+    <div class="modal-overlay" id="privacyModal" role="dialog" aria-modal="true" aria-labelledby="privacyTitle">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeModal('privacyModal')" aria-label="Close">✕</button>
+            <h2 id="privacyTitle">Privacy Policy</h2>
+            <p class="modal-date">Effective Date: January 1, 2026 &nbsp;|&nbsp; Last Updated: July 28, 2026</p>
+            <p>At <strong style="color:#E2E8F0">eChat Inc.</strong>, your privacy is our highest priority. This Privacy Policy explains how we collect, use, store, and protect your information when you use the eChat application.</p>
+            <hr class="modal-divider">
+            <h3>1. Information We Collect</h3>
+            <p><strong style="color:#E2E8F0">a) Information You Provide:</strong></p>
+            <ul>
+                <li>Account registration details (phone number, display name, profile photo).</li>
+                <li>Messages, media, and files you send through the App.</li>
+                <li>Feedback or support requests you submit to us.</li>
+            </ul>
+            <p><strong style="color:#E2E8F0">b) Automatically Collected Information:</strong></p>
+            <ul>
+                <li>Device information (model, OS version, unique device identifiers).</li>
+                <li>App usage data and crash reports (for improving performance).</li>
+                <li>IP address and approximate location (country/region level only).</li>
+            </ul>
+            <h3>2. End-to-End Encryption</h3>
+            <p>All messages sent through eChat are protected with <strong style="color:#E2E8F0">end-to-end encryption (E2EE)</strong>. This means only you and the recipient can read your messages — not eChat, not our servers, not any third party. Encryption keys are stored only on your device.</p>
+            <h3>3. How We Use Your Information</h3>
+            <ul>
+                <li>To provide, maintain, and improve the eChat service.</li>
+                <li>To authenticate your identity and secure your account.</li>
+                <li>To send service-related notifications (security alerts, updates).</li>
+                <li>To respond to your support requests.</li>
+                <li>To detect and prevent fraud, abuse, and security threats.</li>
+            </ul>
+            <h3>4. Data Sharing</h3>
+            <p>We do <strong style="color:#E2E8F0">NOT</strong> sell, rent, or trade your personal information to third parties. We may share data only in the following limited circumstances:</p>
+            <ul>
+                <li><strong style="color:#E2E8F0">Legal compliance:</strong> When required by law, court order, or governmental authority.</li>
+                <li><strong style="color:#E2E8F0">Safety:</strong> To protect the rights, property, or safety of eChat, our users, or the public.</li>
+                <li><strong style="color:#E2E8F0">Service providers:</strong> Trusted partners who assist in operating our infrastructure, under strict confidentiality agreements.</li>
+            </ul>
+            <h3>5. Data Retention</h3>
+            <p>Messages are stored on our servers only until delivered to the recipient's device, after which they are deleted. Account information is retained as long as your account is active. You may request deletion of your account and associated data at any time.</p>
+            <h3>6. Your Rights</h3>
+            <ul>
+                <li><strong style="color:#E2E8F0">Access:</strong> Request a copy of the personal data we hold about you.</li>
+                <li><strong style="color:#E2E8F0">Correction:</strong> Update or correct inaccurate information.</li>
+                <li><strong style="color:#E2E8F0">Deletion:</strong> Request deletion of your account and personal data.</li>
+                <li><strong style="color:#E2E8F0">Portability:</strong> Receive your data in a portable format.</li>
+                <li><strong style="color:#E2E8F0">Objection:</strong> Object to certain types of data processing.</li>
+            </ul>
+            <h3>7. Children's Privacy</h3>
+            <p>eChat is not intended for children under the age of 13. We do not knowingly collect personal information from children under 13. If we become aware that a child under 13 has provided us with personal information, we will delete it immediately.</p>
+            <h3>8. Security</h3>
+            <p>We implement industry-standard security measures including end-to-end encryption, secure HTTPS connections, and regular security audits to protect your data. However, no method of transmission over the internet is 100% secure.</p>
+            <h3>9. Third-Party Links</h3>
+            <p>The App may contain links to third-party websites or services. We are not responsible for the privacy practices of those third parties and encourage you to review their privacy policies.</p>
+            <h3>10. Changes to This Policy</h3>
+            <p>We may update this Privacy Policy periodically. We will notify you of significant changes via in-app notification or email. Continued use of eChat after changes constitutes acceptance of the updated policy.</p>
+            <h3>11. Contact Us</h3>
+            <p>If you have any questions, concerns, or requests regarding this Privacy Policy, please contact our Data Protection team:</p>
+            <ul>
+                <li>📧 Email: <a class="modal-link" href="mailto:mahtabjamali173@gmail.com">mahtabjamali173@gmail.com</a></li>
+                <li>💬 WhatsApp: <a class="modal-link" href="https://wa.me/923473440239" target="_blank" rel="noopener noreferrer">+92 347 3440239</a></li>
+            </ul>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer>
@@ -1003,14 +1431,42 @@
             </div>
             <p class="footer-tagline">The future of secure communication.</p>
             <div class="footer-links">
-                <a href="#">Terms of Service</a>
-                <a href="#">Privacy Policy</a>
-                <a href="#">Support</a>
-                <a href="#">Contact Us</a>
+                <a href="#" onclick="openModal('tosModal'); return false;">Terms of Service</a>
+                <a href="#" onclick="openModal('privacyModal'); return false;">Privacy Policy</a>
+                <a href="mailto:mahtabjamali173@gmail.com">Support</a>
+                <a href="https://wa.me/923473440239" target="_blank" rel="noopener noreferrer">Contact Us</a>
             </div>
-            <div class="footer-copy">© 2024 eChat Inc. All rights reserved.</div>
+            <div class="footer-copy">© 2026 eChat Inc. All rights reserved.</div>
         </div>
     </footer>
+
+    <!-- Modal JS -->
+    <script>
+        function openModal(id) {
+            document.getElementById(id).classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        function switchModal(closeId, openId) {
+            closeModal(closeId);
+            setTimeout(function(){ openModal(openId); }, 150);
+        }
+        document.querySelectorAll('.modal-overlay').forEach(function(overlay) {
+            overlay.addEventListener('click', function(e) {
+                if (e.target === overlay) closeModal(overlay.id);
+            });
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal-overlay.active').forEach(function(m) {
+                    closeModal(m.id);
+                });
+            }
+        });
+    </script>
 
 </body>
 </html>
