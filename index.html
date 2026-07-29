@@ -78,6 +78,13 @@
             justify-content: center;
             color: white;
             font-size: 20px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        .logo-icon svg {
+            width: 24px;
+            height: 24px;
+            display: block;
         }
 
         .nav-links {
@@ -1009,30 +1016,56 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            /* ── Navbar ── */
+            .nav-links { display: none; }
+
+            /* ── Hero ── */
+            .hero {
+                padding: 100px 16px 60px;
+            }
             .hero-container {
                 grid-template-columns: 1fr;
                 text-align: center;
+                gap: 40px;
             }
-            .hero h1 { font-size: 36px; }
+            .hero h1 { font-size: 34px; line-height: 1.2; }
+            .hero-subtitle { font-size: 16px; }
+            .hero-features {
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            .hero-cta {
+                flex-direction: column;
+                align-items: center;
+                gap: 12px;
+            }
+            .btn-large {
+                width: 100%;
+                max-width: 300px;
+                text-align: center;
+                padding: 14px 24px;
+                font-size: 16px;
+            }
 
-            /* ✅ FIX: hero-image was display:none — now visible on mobile */
+            /* ── Hero image / phone mockup ── */
             .hero-image {
                 display: flex;
                 justify-content: center;
-                margin-top: 40px;
+                margin-top: 0;
                 width: 100%;
             }
-
-            /* ✅ FIX: phone mockup responsive sizing for mobile */
             .phone-mockup {
-                width: 220px;
-                height: 440px;
-                transform: none; /* remove 3D tilt on mobile */
+                width: 200px;
+                height: 400px;
+                transform: none;
+                border-radius: 32px;
+                padding: 10px;
             }
-
-            /* ✅ FIX: phone screen image fills mockup properly */
+            .phone-mockup:hover { transform: none; }
             .phone-screen {
                 overflow: hidden;
+                border-radius: 24px;
             }
             .phone-screen img {
                 width: 100%;
@@ -1041,46 +1074,107 @@
                 display: block;
                 max-width: 100%;
             }
-
-            /* ✅ FIX: floating cards repositioned for mobile */
-            .floating-card {
-                display: none;
+            .phone-notch {
+                width: 90px;
+                height: 22px;
             }
+            .floating-card { display: none; }
 
-            .features-grid { grid-template-columns: 1fr; }
+            /* ── Section headers ── */
+            .section-header h2 { font-size: 28px; }
+            .section-header p { font-size: 15px; }
 
-            /* ✅ FIX: screenshots grid — 1 column on very small, 2 on medium mobile */
-            .screenshots-grid {
-                grid-template-columns: repeat(1, 1fr);
+            /* ── Features ── */
+            .features { padding: 60px 16px; }
+            .features-grid {
+                grid-template-columns: 1fr;
                 gap: 16px;
             }
+            .feature-card { padding: 28px 20px; }
 
-            /* ✅ FIX: screenshot images always visible */
+            /* ── Screenshots ── */
+            .screenshots { padding: 60px 16px; }
+            .screenshots-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                margin-top: 40px;
+            }
             .screenshot-item {
-                overflow: visible;
+                overflow: hidden;
+                padding: 8px;
             }
             .screenshot-item img {
                 width: 100%;
                 height: auto;
+                max-width: 100%;
                 display: block;
                 border-radius: 16px;
-                max-width: 100%;
+                object-fit: contain;
+            }
+            .screenshot-item:hover {
+                transform: none;
             }
 
-            .nav-links { display: none; }
+            /* ── Founder ── */
+            .founder { padding: 60px 16px; }
+            .founder-card {
+                padding: 40px 24px;
+            }
+            .founder-card blockquote { font-size: 17px; }
+            .founder-card .name { font-size: 17px; }
+            .founder-avatar {
+                width: 90px;
+                height: 90px;
+            }
+
+            /* ── Download / CTA ── */
+            .download-section { padding: 60px 16px; }
+            .download-card { padding: 36px 20px; }
+            .download-card h2 { font-size: 24px; }
+
+            /* ── Support / Contact ── */
+            .support-contact-wrapper { padding: 60px 16px; }
+            .contact-cards { grid-template-columns: 1fr; }
+            .contact-card { padding: 28px 20px; }
+            .support-contact-wrapper .section-header h2 { font-size: 26px; }
+
+            /* ── Footer ── */
+            footer { padding: 48px 16px 24px; }
+            .footer-logo { font-size: 24px; }
+            .footer-links { gap: 20px; }
         }
 
-        /* Extra small screens */
+        /* Extra small screens (320px – 480px) */
         @media (max-width: 480px) {
+            .hero { padding: 90px 14px 50px; }
+            .hero h1 { font-size: 26px; }
+            .hero-subtitle { font-size: 14px; }
+
             .phone-mockup {
-                width: 180px;
-                height: 360px;
+                width: 170px;
+                height: 340px;
+                border-radius: 28px;
+                padding: 8px;
             }
+            .phone-screen { border-radius: 20px; }
+            .phone-notch { width: 70px; height: 18px; }
+
             .screenshots-grid {
                 grid-template-columns: 1fr;
-                gap: 12px;
+                gap: 16px;
             }
-            .hero h1 { font-size: 28px; }
+            .screenshot-item img {
+                border-radius: 12px;
+            }
+
+            .section-header h2 { font-size: 24px; }
+            .section-header p { font-size: 14px; }
+
+            .founder-card blockquote { font-size: 15px; }
+            .founder-avatar { width: 80px; height: 80px; }
+
+            .footer-links { gap: 14px; flex-direction: column; align-items: center; }
+            .footer-logo { font-size: 22px; }
         }
     </style>
 </head>
@@ -1090,7 +1184,12 @@
     <nav>
         <div class="nav-container">
             <a href="#" class="logo">
-                <div class="logo-icon"><i class="fa-solid fa-comment-dots"></i></div>
+                <div class="logo-icon">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path d="M22 2L11 13" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="rgba(255,255,255,0.15)"/>
+                    </svg>
+                </div>
                 eChat
             </a>
             <div class="nav-links">
@@ -1116,7 +1215,7 @@
                     <div class="hero-feature"><i class="fa-solid fa-lock"></i> End-to-end encryption</div>
                     <div class="hero-feature"><i class="fa-solid fa-eye-slash"></i> No data tracking</div>
                     <div class="hero-feature"><i class="fa-solid fa-cloud"></i> Cloud sync</div>
-                    <div class="hero-feature"><i class="fa-solid fa-users"></i> Group chats</div>
+                    <div class="hero-feature"><i class="fa-solid fa-users"></i> channels</div>
                 </div>
                 <div class="hero-cta">
                     <a href="https://www.dropbox.com/scl/fi/rdc9i6si9nc34j288aueg/eChat-1.0.apk?rlkey=xyn8o1jg3neko2z3tz4jlykaw&st=75srikmf&dl=1" download="eChat-1.0.apk" target="_blank" rel="noopener noreferrer" class="btn btn-large"><i class="fa-brands fa-android"></i> Download APK</a>
@@ -1203,18 +1302,18 @@
             <div class="screenshots-grid">
                 <div class="screenshot-item">
                     <!-- User image 1 -->
-                    <img src="https://teamily-storage.becdn.net/im/images/3280686212547622/add008f0-a53d-4bcd-9294-82f6ac3d1c89.2.jpeg" alt="eChat Screenshot 1">
-                    <div class="screenshot-label">Chat Interface</div>
+                    <img src="https://teamily-storage.becdn.net/im/images/3280686212547622/9eb2bbf3-0347-480d-9c9b-6a603925934c.1000292766.jpg" alt="eChat Screenshot 1">
+                    <div class="screenshot-label">Profile interface</div>
                 </div>
                 <div class="screenshot-item">
                     <!-- User image 2 -->
-                    <img src="https://teamily-storage.becdn.net/im/images/3280686212547622/dc4203a0-fc85-45c0-9333-d7cbfc630a40.3.jpeg" alt="eChat Screenshot 2">
-                    <div class="screenshot-label">Dark Mode</div>
+                    <img src="https://teamily-storage.becdn.net/im/images/3280686212547622/f62460ca-cf9d-4924-8fd3-95955bfb39d2.1000292767.jpg" alt="eChat Screenshot 2">
+                    <div class="screenshot-label">Channel interface</div>
                 </div>
                 <div class="screenshot-item">
                     <!-- User image 3 -->
-                    <img src="https://teamily-storage.becdn.net/im/images/3280686212547622/5a46aa2a-d8fb-4275-a681-18d412b3951e.4.jpeg" alt="eChat Screenshot 3">
-                    <div class="screenshot-label">Secure Calls</div>
+                    <img src="https://teamily-storage.becdn.net/im/images/3280686212547622/34ad97c5-8608-4b1b-8624-877813e53117.1000292770.jpg" alt="eChat Screenshot 3">
+                    <div class="screenshot-label">chat interface</div>
                 </div>
             </div>
         </div>
@@ -1426,7 +1525,12 @@
     <footer>
         <div class="footer-container">
             <div class="footer-logo">
-                <div class="logo-icon"><i class="fa-solid fa-comment-dots"></i></div>
+                <div class="logo-icon">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path d="M22 2L11 13" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="rgba(255,255,255,0.15)"/>
+                    </svg>
+                </div>
                 eChat
             </div>
             <p class="footer-tagline">The future of secure communication.</p>
